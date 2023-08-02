@@ -1,0 +1,69 @@
+{% extends "templates/members/base.html"%}
+<!-- {% load static %} -->
+{% block scripts %}
+{% endblock scripts %}
+{% block content %}
+<div class="section inner_page_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner_title">
+                    <h3>{{member.username}} - Profile</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section layout_padding">
+    <div class="container-fluid">        
+        <div class="row">            
+            <div class="full services_blog">                  
+                <h4>Current Membership: <span style="color: red;"> {{member.membership}}</span> </h4>
+                <div class="col-sm-12">
+                    <div class="full">
+                        <div class="center">
+                            <a class="main_bt" href="/membership/">Upgrade Membership</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="full services_blog">                    
+                <h4>Your Invitation Link: <span style="color: red;" id="yourtext">{{ request.META.HTTP_HOST }}/signup/?q={{member.referrel_code}}</span></h4>
+                <div class="col-sm-12">
+                    <div class="full">
+                        <div class="center">
+                            <a class="main_bt" href="#" id="copytoclipboard">Copy Link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+            <div class="full services_blog">
+                <h4>Your USDT Address<div style="text-align: center;">
+                    <span style="color: red;">Warnning: </span>
+                    <span style="font-size: 16px;">Enter a valid TRC20/TRON network USDT address only. Otherwise you will loose money</span>
+                </div>                       
+                    <form method="POST" action="." class="contact_form_inner">{% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                                <input type="text" name="usdt_address" value="{{member.usdt_address}}" maxlength="200">
+                            </div>
+                            <button type="submit">Save USDT Address</button>
+                        </fieldset>
+                    </form>   
+                </h4> 
+            </div>            
+        </div>        
+    </div>
+</div>
+<script  type="text/javascript">
+    document.getElementById('copytoclipboard').onclick = function ()    {        
+        var text = document.getElementById('yourtext');
+        var textArea = document.createElement("textarea");        
+        textArea.value = text.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+    };
+</script>
+{% endblock content %}

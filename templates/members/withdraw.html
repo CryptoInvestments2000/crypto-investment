@@ -1,0 +1,42 @@
+{% extends "templates/members/base.html"%}
+{% load static %}
+{% block content %} 
+<div class="section inner_page_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner_title">
+                    <h3>{{member.username}} - Withdraw</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section layout_padding">
+    <div class="container-fluid">        
+        <div class="row">            
+            <div class="full services_blog">
+                <h4>Wallet Balance USDT: {{member.balance}}</h4>
+            </div>            
+            <div class="full services_blog">
+                <form method="POST" action="." class="contact_form_inner">{% csrf_token %}
+                    <fieldset>
+                        <h4>USDT Address (Must be TRC-20 / TRON Network)</h4>
+                            <div class="field">
+                                <input type="text" name="usdt_address" value="{{member.usdt_address}}"  maxlength="200">
+                            </div>
+                        <h4>Withdraw Amount</h4>
+                        <div class="field">
+                            <input type="text" name="withdraw_amount" maxlength="20">
+                        </div>                                
+                        <div class="btn-layer">
+                            <h4><button type="submit">Request Withdraw</button></h4>
+                        </div>                                 
+                    </fieldset>
+                </form> 
+            </div>            
+        </div>       
+    </div>
+</div>
+{% endblock content %}

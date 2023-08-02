@@ -1,0 +1,26 @@
+<h1>Withdraw Requests</h1>
+<table>
+    <tr>
+      <th>Request Date</th>
+      <th>Username</th>
+      <th>Amount</th>
+      <th>USDT Address</th>          
+    </tr>
+    {% for obj in object_list %}
+    <tr>
+        <td>{{ obj.request_date }}</td>
+        <td>{{ obj.username }}</td>
+        <td>{{ obj.amount }}</td>
+        <td>{{ obj.usdt_address }}</td>               
+        <td>
+            <form method="POST"  action=".">{% csrf_token %}  
+                <input type="text" name="id" value="{{obj.id}}">
+                <input type="text" name="username" value="{{obj.username}}">
+                <input type="text" name="request_date" value="{{obj.request_date}}">  
+                <input type="text" name="amount" value="{{obj.amount}}"> 
+                <button type="submit" name="approve_withdraw_request">Approve</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}    
+  </table>

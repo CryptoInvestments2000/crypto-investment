@@ -1,0 +1,26 @@
+<h1>Membership Upgrade</h1>
+<table>
+    <tr>
+      <th>Trans ID</th>
+      <th>Username</th>
+      <th>Request Date</th>
+      <th>Membership</th>
+      <th>Due Amount</th>      
+    </tr>
+    {% for obj in object_list %}
+    <tr>
+        <td>{{ obj.trans_id }}</td>
+        <td>{{ obj.username }}</td>
+        <td>{{ obj.request_date }}</td>
+        <td>{{ obj.membership }}</td>
+        <td>{{ obj.due_amount }}</td>        
+        <td>
+            <form method="POST"  action=".">{% csrf_token %}  
+                <input type="text" name="username" value="{{obj.username}}">
+                <input type="text" name="membership" value="{{obj.membership}}">  
+                <button type="submit" name="upgrade_membership">Upgrade</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}    
+  </table>

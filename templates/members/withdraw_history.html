@@ -1,0 +1,29 @@
+{% extends "templates/members/base.html"%}
+{% load static %}
+{% block content %} 
+<div class="section inner_page_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner_title">
+                    <h3>{{username}} - Withdraw History</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section layout_padding">       
+    <div class="container-fluid">            
+        <div class="row"> 
+            <div class="full services_blog"> <h4>Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USDT Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status</h4></div>
+            {% for obj in withdraw_history_obj %}
+            <div class="full services_blog">                
+            <h4>{{obj.paid_date}}&nbsp;&nbsp;&nbsp;{{obj.usdt_address}}&nbsp;&nbsp;&nbsp;{{obj.amount}}&nbsp;&nbsp;&nbsp;{%if obj.paid == True %}<span style="color: green;"> PAID </span>{% else %}<span style="color:red"> Pending </span>{% endif %}</h4>                     
+            </div>
+            {% endfor %}            
+           
+        </div>        
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends "templates/members/base.html"%}
+{% load static %}
+{% block content %}
+{% for obj in objects_list%}   
+<div class="section inner_page_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner_title">
+                    <h3>{{obj.username}} - Wallet</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section layout_padding">
+    <div class="container-fluid">        
+        <div class="row">            
+            <div class="full services_blog">
+                <h4>Wallet Balance USDT: <span style="color: red;">{{obj.balance}}</span> </h4> 
+                    <div class="col-sm-12">
+                        <div class="full">
+                            <div class="center">
+                                <a class="main_bt" href="/withdraw/">Withdraw Money</a>
+                            </div>
+                        </div>
+                    </div>      
+                </div>            
+                <div class="full services_blog">                    
+                    <h4>Total Withdrawals USDT:<span style="color: red;"> {{obj.total_withdrawals}}</span> </h4>
+                </div>
+                <div class="full services_blog">                    
+                    <h4>Total Earnings USDT:<span style="color: red;"> {{obj.total_earnings}} </span> </h4>
+                </div>
+                <div class="full services_blog">                    
+                    <h4>Total Daily Income USDT:<span style="color: red;"> {{obj.daily_income}} </span> </h4>
+                </div>
+                <div class="full services_blog">                    
+                    <h4>Team Commission Level 1 USDT:<span style="color: red;"> {{obj.level1_com}} </span> </h4>
+                </div>
+                <div class="full services_blog">                    
+                    <h4>Team Commission Level 2 USDT:<span style="color: red;">{{obj.level2_com}} </span> </h4>
+                </div>
+                <div class="full services_blog">                    
+                    <h4>Team Commission Level 3 USDT:<span style="color: red;">{{obj.level3_com}} </span> </h4>
+                </div> 
+            </div>
+        </div>        
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

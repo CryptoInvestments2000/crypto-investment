@@ -1,0 +1,82 @@
+{% extends "templates/members/base.html"%}
+{% load static %}
+{% block scripts %}
+{% endblock scripts %}
+{% block content %}
+<div class="section inner_page_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner_title">
+                    <h3>{{member.username}} - Membership</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section layout_padding">
+    <div class="container-fluid">        
+        <div class="row">            
+            <div class="full services_blog">                  
+                <h4>Current Membership: {{member.membership}}</h4>
+                <div class="col-sm-12">
+                    <div class="full">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="full services_blog">                    
+                <h4>Deposit Address: <span style="color: red;" id="yourtext">{{company_usdt_address}}</span></h4>
+                <div class="col-sm-12">
+                    <div class="full">
+                        <div class="center">
+                            <a class="main_bt" href="#" id="copytoclipboard">Copy Deposit Address</a>
+                        </div>
+                        <div style="text-align: center;">
+                            <span style="color: red;">Warnning!! </span>
+                            <span style="font-size: 16px;">Deposit USDT using TRC20 / TRON network only. Otherwise you will loose money</span>
+                        </div>
+                    </div>                        
+                </div>                  
+            </div>                      
+            <div class="full services_blog">
+                <h4>Select Membership            
+                    <form method="POST" action="." class="contact_form_inner">{% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                                <div class="center"  style="padding-bottom: 10px;">                            
+                                    <select id="membership" name="membership" class="main_bt">
+                                        <option value="None">None</option>
+                                        <option value="Bronze">Bronze - USDT 50</option>
+                                        <option value="Silver">Silver - USDT 100</option>
+                                        <option value="Gold">Gold - USDT 300</option>
+                                        <option value="Platinum">Platinum - USDT 500</option>
+                                        <option value="Diamond">Diamond - USDT 1000</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <h4>Deposit relevent membership fee using Binance and submit the transaction reference number.</h4>
+                            <div class="field">
+                                <input type="text" name="trans_id" maxlength="100">
+                            </div>   
+                            <button type="submit"  style="width: 250px;">Submit Transaction No</button>
+                        </fieldset>
+                    </form>   
+                </h4> 
+            </div>            
+        </div>        
+    </div>
+</div>
+<script>
+    document.getElementById('copytoclipboard').onclick = function ()    {
+        
+        var text = document.getElementById('yourtext')
+        var textArea = document.createElement("textarea");
+        textArea.value = text.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+    };
+</script>
+{% endblock content %}
